@@ -1,4 +1,4 @@
-package TERCEIRO_DESAFIO;
+package c.TERCEIRO_DESAFIO;
 /*
 Dado um array de inteiros e um valor alvo, determine o número de pares entre os elementos
 do array em que a sua diferença seja igual ao valor alvo.

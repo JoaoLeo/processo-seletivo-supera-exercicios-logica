@@ -1,19 +1,36 @@
-package SEGUNDO_DESAFIO;
-/*
-Leia um valor de ponto flutuante com duas casas decimais. Este valor representa um valor
-monetário. A seguir, calcule o menor número de notas e moedas possíveis no qual o valor
-pode ser decomposto. As notas consideradas são de 100, 50, 20, 10, 5, 2. As moedas
-possíveis são de 1, 0.50, 0.25, 0.10, 0.05 e 0.01. A seguir mostre a relação de notas
-necessárias.
-Entrada
-O arquivo de entrada contém um valor de ponto flutuante N (0 ≤ N ≤ 1000000.00).
-Saída
-Imprima a quantidade mínima de notas e moedas necessárias para trocar o valor inicial,
-conforme exemplo fornecido.
-Obs.: Utilize ponto (.) para separar a parte decimal.
- */
+package b.SEGUNDO_DESAFIO;
+
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        //Usando locale dos eua para que o programa use ponto (.) como separador decimal
+        Locale.setDefault(Locale.US);
+        Scanner in = new Scanner(System.in);
+        int[] notas = {100, 50, 20, 10, 5, 2};
+        double[] moedas = {1.0, 0.50, 0.25, 0.10, 0.05, 0.01};
+        System.out.print("Digite o valor monetário: ");
+        double valor = in.nextDouble();
+        if(valor <= 0 || valor >= 1000000.00){
+            System.out.println("Valor inválido");
+            return;
+        }
+        int centavos = (int) (valor * 100);
+
+        System.out.println("NOTAS:");
+        for (int nota : notas) {
+            int qtd = centavos / (nota * 100);
+            System.out.printf("%d nota(s) de R$ %.2f%n", qtd, (double) nota);
+            centavos %= nota * 100;
+        }
+
+        System.out.println("MOEDAS:");
+        for (double moeda : moedas) {
+            int qtd = centavos / (int) (moeda * 100);
+            System.out.printf("%d moeda(s) de R$ %.2f%n", qtd, moeda);
+            centavos %= (moeda * 100);
+        }
+        in.close();
     }
 }
