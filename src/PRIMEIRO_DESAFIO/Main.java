@@ -1,21 +1,36 @@
 package PRIMEIRO_DESAFIO;
-/*
-Considerando a entrada de valores inteiros não negativos, ordene estes valores segundo
-o seguinte critério:
-• Primeiro os Pares
-• Depois os Ímpares
-Sendo que deverão ser apresentados os pares em ordem crescente e depois os ímpares
-em ordem decrescente.
-Entrada
-A primeira linha de entrada contém um único inteiro positivo N (1 < N <= 105) Este é o
-número de linhas de entrada que vem logo a seguir. As próximas N linhas conterão, cada
-uma delas, um valor inteiro não negativo.
-Saída
-Apresente todos os valores lidos na entrada segundo a ordem apresentada acima. Cada
-número deve ser impresso em uma linha, conforme exemplo abaixo.
- */
+
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Scanner in = new Scanner(System.in);
+        List<Integer> pares = new ArrayList<>();
+        List<Integer> impares = new ArrayList<>();
+        System.out.print("Digite a quantidade de valores de entrada (maior que 1 e menor que 100000): ");
+        int n = in.nextInt();
+        if(n < 1 || n >= 100000){
+            System.out.println("O número deve ser maior que  1 e menor que 100000 ");
+            return;
+        }
+        for(int i = 1; i <= n; i++){
+            System.out.print(i + "° Entrada de valor: ");
+            int num = in.nextInt();
+            if(num < 0) {
+                System.out.println("Não adicione valores negativos");
+                break;
+            }
+            if(num % 2==0 ){
+                pares.add(num);
+            }
+            else {
+                impares.add(num);
+            }
+        }
+        Collections.sort(pares);
+        Collections.sort(impares);
+        Collections.reverse(impares);
+        pares.forEach(System.out::println);
+        impares.forEach(System.out::println);
     }
 }
