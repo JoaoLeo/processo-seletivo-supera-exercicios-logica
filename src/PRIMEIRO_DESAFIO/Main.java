@@ -32,5 +32,6 @@ public class Main {
         Collections.reverse(impares);
         pares.forEach(System.out::println);
         impares.forEach(System.out::println);
+        in.close();
     }
 }
